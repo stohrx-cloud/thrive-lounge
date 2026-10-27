@@ -9,7 +9,7 @@
 <link rel="icon" href="assets/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <style>
   :root {
@@ -23,12 +23,12 @@
     --aqua-ink: #0b2530;
     --tint: #e6f6fa;
     --green: #1d7a4a;
-    --display: "Cormorant Garamond", Georgia, serif;
-    --body: "Hanken Grotesk", system-ui, sans-serif;
+    --display: "Figtree", system-ui, sans-serif;
+    --body: "Figtree", system-ui, sans-serif;
     --head: 70px;
     --pad: clamp(16px, 4vw, 48px);
     --max: 1280px;
-    /* shape rule: buttons and chips are pills, cards 16px, inputs 10px, stage 24px */
+    /* shape rule: buttons and tabs are pills, cards 16px, inputs 10px */
     --r-card: 16px;
     --r-input: 10px;
   }
@@ -38,8 +38,8 @@
   body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
   img { display: block; max-width: 100%; }
   a { color: inherit; }
-  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.02; letter-spacing: -.01em; margin: 0; }
-  h2 { font-size: clamp(38px, 4.2vw, 58px); }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.08; letter-spacing: -.02em; margin: 0; }
+  h2 { font-size: clamp(32px, 3.4vw, 46px); }
   button, input { font: inherit; color: inherit; }
   .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -74,28 +74,20 @@
   .status { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; margin: 0 0 16px; color: var(--muted); }
   .status i { font-size: 18px; }
   .status.open { color: var(--green); }
-  .hero h1 { font-size: clamp(56px, 7.4vw, 108px); }
-  .hero h1 em { color: var(--aqua-deep); }
-  .hero .lede { margin: 18px 0 0; font-size: clamp(18px, 1.5vw, 21px); color: var(--muted); max-width: 34ch; }
+  .hero h1 { font-size: clamp(40px, 4.6vw, 64px); max-width: 13ch; }
+  .formerly { margin: 0 0 6px; font-size: 15px; font-weight: 600; color: var(--aqua-deep); }
+  .hero .lede { margin: 18px 0 0; font-size: clamp(18px, 1.5vw, 20px); color: var(--muted); max-width: 36ch; }
   .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
-  .stage-wrap { display: grid; gap: 12px; }
-  .stage { position: relative; margin: 0; aspect-ratio: 4 / 4.6; border-radius: 24px; overflow: hidden; background: #0b1520; }
-  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s; }
-  .stage img.on { opacity: 1; }
-  .stage.gl img { opacity: 0 !important; }
-  .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .svc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
-  .chip { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 13px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); font-weight: 600; font-size: 14px; white-space: nowrap; cursor: pointer; }
-  .chip i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
-  .chip:hover { border-color: var(--ink); }
-  .chip[aria-pressed=true] { border-color: var(--ink); background: var(--ink); color: #fff; }
+  .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .tile { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: inherit; }
+  .tile img { width: 100%; height: auto; aspect-ratio: 4 / 3.3; object-fit: cover; border-radius: var(--r-card); transition: transform .3s; }
+  .tile:hover img { transform: translateY(-2px); }
+  .tile b { display: block; margin-top: 10px; font-weight: 600; font-size: 17px; }
+  .tile span { color: var(--muted); font-size: 15px; }
   @media (prefers-reduced-motion: no-preference) {
-    .hero-copy > * { animation: rise .8s cubic-bezier(.16,1,.3,1) both; }
-    .hero-copy > :nth-child(2) { animation-delay: .06s; }
-    .hero-copy > :nth-child(3) { animation-delay: .12s; }
-    .hero-copy > :nth-child(4) { animation-delay: .18s; }
+    .hero-copy > * { animation: rise .6s cubic-bezier(.16,1,.3,1) both; }
   }
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
 
   /* Services: one tabbed panel */
   .services { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -106,7 +98,7 @@
   .svc { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
   .svc-photo { border-radius: var(--r-card); overflow: hidden; aspect-ratio: 4 / 5; background: var(--tint); }
   .svc-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .svc h3 { font-size: clamp(32px, 3.2vw, 44px); }
+  .svc h3 { font-size: clamp(28px, 2.6vw, 36px); }
   .svc .lede { margin: 10px 0 0; font-size: 18px; color: var(--muted); max-width: 46ch; }
   .facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 18px 0 0; padding: 0; }
   .facts li { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--tint); font-weight: 600; font-size: 15px; }
@@ -127,17 +119,17 @@
   /* Plan finder */
   .plan { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 24px; align-items: start; }
   .ask { background: var(--ink); color: #fff; border-radius: var(--r-card); padding: 24px; }
-  .ask h3 { font-size: 30px; }
+  .ask h3 { font-size: 22px; }
   .ask .seg { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
   .ask .seg button { height: 40px; padding: 0 14px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.3); background: none; color: #fff; font-weight: 600; cursor: pointer; }
   .ask .seg button[aria-pressed=true] { background: var(--aqua); border-color: var(--aqua); color: var(--aqua-ink); }
   .ask label { display: block; margin-top: 22px; font-weight: 600; }
   .visits { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
   .visits input[type=range] { flex: 1; accent-color: var(--aqua); height: 28px; }
-  .visits output { min-width: 3.4ch; font: 700 34px/1 var(--display); text-align: right; }
+  .visits output { min-width: 3ch; font: 700 30px/1 var(--display); text-align: right; }
   .best { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); }
   .best small { display: block; color: #b9c7d2; }
-  .best strong { display: block; font: 700 36px/1.05 var(--display); margin: 4px 0; }
+  .best strong { display: block; font: 700 28px/1.15 var(--display); margin: 4px 0; }
   .best p { margin: 0; color: #d5dee5; }
   .ask .note { margin: 16px 0 0; font-size: 14px; color: #b9c7d2; }
   .prices { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-card); padding: 8px 20px; }
@@ -155,10 +147,10 @@
   .about-photo { border-radius: var(--r-card); overflow: hidden; aspect-ratio: 3 / 4; }
   .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
   .about .lede { margin: 12px 0 0; font-size: 18px; color: var(--muted); max-width: 48ch; }
-  .owner-quote { margin: 22px 0 0; padding-left: 18px; border-left: 3px solid var(--aqua); font: 600 italic clamp(22px, 2vw, 27px)/1.3 var(--display); }
+  .owner-quote { margin: 22px 0 0; padding-left: 18px; border-left: 3px solid var(--aqua); font: 500 clamp(19px, 1.6vw, 22px)/1.45 var(--body); }
   .owner-quote footer { margin-top: 6px; font: 500 15px var(--body); color: var(--muted); }
   .rating { display: flex; align-items: baseline; gap: 12px; margin-top: 32px; }
-  .rating strong { font: 700 48px/1 var(--display); }
+  .rating strong { font: 700 40px/1 var(--display); }
   .rating span { color: var(--muted); }
   .quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
   .quote { margin: 0; padding: 16px 18px; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--line); }
@@ -189,8 +181,6 @@
     .nav { display: none; }
     .head-tel { margin-left: auto; }
     .hero, .svc, .plan, .about, .visit-grid { grid-template-columns: 1fr; }
-    .stage-wrap { order: -1; }
-    .stage { aspect-ratio: 4 / 3.4; }
     .svc-photo { aspect-ratio: 16 / 11; }
     .quotes { grid-template-columns: 1fr; }
     .about-photo { aspect-ratio: 4 / 3.2; }
@@ -200,9 +190,9 @@
     .brand img { height: 42px; }
     .head-tel span { display: none; }
     .head-in { gap: 14px; }
-    .tabs, .svc-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); padding-left: var(--pad); padding-right: var(--pad); }
-    .tabs::-webkit-scrollbar, .svc-chips::-webkit-scrollbar { display: none; }
-    .tab, .chip { flex: none; }
+    .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); padding-left: var(--pad); padding-right: var(--pad); }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab { flex: none; }
     .beds { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .cta-row .btn { flex: 1 1 auto; }
   }
@@ -232,32 +222,25 @@
   <section class="wrap hero">
     <div class="hero-copy">
       <p class="status" data-status><i class="ph ph-clock" aria-hidden="true"></i><span>Open Monday to Saturday</span></p>
-      <h1>Heat. Light. <em>Glow.</em></h1>
-      <p class="lede">Tanning, red light and infrared sauna at Dundas and Neyagawa. Formerly Tan Temptations.</p>
+      <p class="formerly">Formerly Tan Temptations</p>
+      <h1>Tanning and wellness in Oakville</h1>
+      <p class="lede">UV tanning, spray tans, red light therapy and infrared sauna at Dundas and Neyagawa.</p>
       <div class="cta-row">
         <a class="btn btn-dark" href="#services">See services</a>
         <a class="btn btn-line" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>905-257-7575</a>
       </div>
     </div>
-    <div class="stage-wrap">
-      <figure class="stage" aria-label="Thrive Lounge services" style="margin:0">
-        <img class="on" data-svc="uv" src="assets/bed-medium.webp" width="900" height="1125" alt="A client in a UV tanning bed" fetchpriority="high">
-        <img data-svc="red" src="assets/red-light.webp" width="680" height="850" alt="A red light therapy session" loading="lazy">
-        <img data-svc="sauna" src="assets/sauna.webp" width="900" height="1125" alt="A client relaxing in the infrared sauna" loading="lazy">
-        <img data-svc="spray" src="assets/spray-tan.webp" width="798" height="1200" alt="An airbrush spray tan being applied" loading="lazy">
-      </figure>
-      <ul class="svc-chips" aria-label="Preview a service">
-        <li><button class="chip" type="button" data-svc="uv" aria-pressed="true" style="--c:#40bad4"><i aria-hidden="true"></i>UV tanning</button></li>
-        <li><button class="chip" type="button" data-svc="red" aria-pressed="false" style="--c:#e2362b"><i aria-hidden="true"></i>Red light</button></li>
-        <li><button class="chip" type="button" data-svc="sauna" aria-pressed="false" style="--c:#f09a46"><i aria-hidden="true"></i>Infrared sauna</button></li>
-        <li><button class="chip" type="button" data-svc="spray" aria-pressed="false" style="--c:#c98d55"><i aria-hidden="true"></i>Spray tan</button></li>
-      </ul>
-    </div>
+    <ul class="tiles" aria-label="Services">
+      <li><button class="tile" type="button" data-go="uv"><img src="assets/bed-medium.webp" width="900" height="1125" alt="A client in a UV tanning bed" fetchpriority="high"><b>UV tanning</b><span>Packages from $79</span></button></li>
+      <li><button class="tile" type="button" data-go="red"><img src="assets/red-light.webp" width="680" height="850" alt="A red light therapy session"><b>Red light therapy</b><span>$30 a session</span></button></li>
+      <li><button class="tile" type="button" data-go="sauna"><img src="assets/sauna.webp" width="900" height="1125" alt="A client relaxing in the infrared sauna"><b>Infrared sauna</b><span>$30 for 30 minutes</span></button></li>
+      <li><button class="tile" type="button" data-go="spray"><img src="assets/spray-tan.webp" width="798" height="1200" alt="An airbrush spray tan being applied"><b>Spray tan</b><span>$60, book online</span></button></li>
+    </ul>
   </section>
 
   <section class="sec services" id="services" aria-labelledby="svc-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="svc-h">Services</h2><p>Pick one to see how it works and how to book.</p></div>
+      <div class="sec-head"><h2 id="svc-h">Services</h2><p>Choose a service for details, prices and how to book.</p></div>
       <ul class="tabs" role="tablist" aria-label="Services">
         <li role="presentation"><button class="tab" role="tab" id="t-uv" data-svc="uv" aria-controls="p-uv" aria-selected="true">UV tanning</button></li>
         <li role="presentation"><button class="tab" role="tab" id="t-red" data-svc="red" aria-controls="p-red" aria-selected="false" tabindex="-1">Red light</button></li>
@@ -269,7 +252,7 @@
         <div class="svc-photo"><img data-bed-photo src="assets/bed-medium.webp" width="900" height="1125" alt="Medium UV tanning bed" loading="lazy"></div>
         <div>
           <h3>UV tanning</h3>
-          <p class="lede">An even, natural glow, timed to your skin type.</p>
+          <p class="lede">Sessions are set to your skin type for even, natural colour.</p>
           <ul class="facts"><li><i class="ph ph-sun" aria-hidden="true"></i>5 beds and booths</li><li><i class="ph ph-identification-card" aria-hidden="true"></i>18+ only</li><li><i class="ph ph-tag" aria-hidden="true"></i>From $79</li></ul>
           <div class="beds" aria-label="Our beds">
             <button class="bed" type="button" aria-pressed="false" data-src="assets/bed-standup.webp" data-name="Stand-up booth"><img src="assets/bed-standup.webp" width="900" height="1125" alt="" loading="lazy"><span>Stand-up</span></button>
@@ -287,12 +270,12 @@
         <div class="svc-photo"><img src="assets/red-light.webp" width="680" height="850" alt="A red light therapy session" loading="lazy"></div>
         <div>
           <h3>Red light therapy</h3>
-          <p class="lede">Targeted light for skin, recovery and circulation.</p>
+          <p class="lede">Targeted light that supports skin health and muscle recovery.</p>
           <ul class="facts"><li><i class="ph ph-timer" aria-hidden="true"></i>20 minutes</li><li><i class="ph ph-tag" aria-hidden="true"></i>$30 a session</li></ul>
           <ul class="ticks">
-            <li><i class="ph ph-check" aria-hidden="true"></i>Smoother skin tone and texture</li>
-            <li><i class="ph ph-check" aria-hidden="true"></i>Less soreness after workouts</li>
-            <li><i class="ph ph-check" aria-hidden="true"></i>Non-invasive, nothing to prep</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Improved skin tone and texture</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Less inflammation and muscle soreness</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Better circulation and recovery</li>
           </ul>
           <div class="how"><b>How to book</b><div class="cta-row"><a class="btn btn-dark" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>Call to book</a><a class="btn btn-line" href="#pricing" data-plan="red">Compare plans</a></div></div>
         </div>
@@ -302,11 +285,11 @@
         <div class="svc-photo"><img src="assets/sauna.webp" width="900" height="1125" alt="A client relaxing in the infrared sauna" loading="lazy"></div>
         <div>
           <h3>Infrared sauna</h3>
-          <p class="lede">A 2-person Jacuzzi infrared sauna with colour light. Towels and water included.</p>
+          <p class="lede">A 2-person Jacuzzi infrared sauna with chromotherapy lighting. Towels and water included.</p>
           <ul class="facts"><li><i class="ph ph-timer" aria-hidden="true"></i>30 minutes</li><li><i class="ph ph-users" aria-hidden="true"></i>Bring a friend +$10</li><li><i class="ph ph-sparkle" aria-hidden="true"></i>Halo salt +$6</li></ul>
           <ul class="ticks">
-            <li><i class="ph ph-check" aria-hidden="true"></i>Relax and lower stress</li>
-            <li><i class="ph ph-check" aria-hidden="true"></i>Better circulation, gentle detox</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Relaxation and stress relief</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Circulation and gentle detox</li>
             <li><i class="ph ph-check" aria-hidden="true"></i>Muscle and joint relief</li>
           </ul>
           <div class="how"><b>How to book</b><div class="cta-row"><a class="btn btn-dark" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>Call to book</a><a class="btn btn-line" href="#pricing" data-plan="sauna">Compare plans</a></div></div>
@@ -317,12 +300,11 @@
         <div class="svc-photo"><img src="assets/spray-tan.webp" width="798" height="1200" alt="An airbrush spray tan being applied" loading="lazy"></div>
         <div>
           <h3>Custom spray tan</h3>
-          <p class="lede">Airbrushed by a trained pro, matched to your skin tone. Streak-free.</p>
+          <p class="lede">A custom airbrush tan, applied by a trained professional and matched to your skin tone.</p>
           <ul class="facts"><li><i class="ph ph-timer" aria-hidden="true"></i>30 minutes</li><li><i class="ph ph-tag" aria-hidden="true"></i>$60</li></ul>
           <ul class="ticks">
-            <li><i class="ph ph-check" aria-hidden="true"></i>No UV at all</li>
-            <li><i class="ph ph-check" aria-hidden="true"></i>Great before events and trips</li>
-            <li><i class="ph ph-check" aria-hidden="true"></i>Prep steps emailed after you book</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>No UV exposure</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Prep instructions are emailed after you book</li>
           </ul>
           <div class="how"><b>How to book</b><div class="cta-row"><a class="btn btn-main" href="https://book.squareup.com/appointments/qqfjvea8zdp7jr/location/LDJ78Z5449Y8X/services" target="_blank" rel="noopener"><i class="ph ph-calendar-check" aria-hidden="true"></i>Book online</a><a class="btn btn-line" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>Call</a></div></div>
         </div>
@@ -333,10 +315,10 @@
 
   <section class="sec" id="pricing" aria-labelledby="price-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="price-h">Find your plan</h2><p>Tell us how often you'll come. We'll show the best value.</p></div>
+      <div class="sec-head"><h2 id="price-h">Prices and packages</h2><p>Set how often you plan to come and we'll point out the best value.</p></div>
       <div class="plan">
         <div class="ask">
-          <h3>What are you here for?</h3>
+          <h3>Compare packages</h3>
           <div class="seg" role="group" aria-label="Service">
             <button type="button" data-plan="sauna" aria-pressed="true">Infrared sauna</button>
             <button type="button" data-plan="red" aria-pressed="false">Red light</button>
@@ -363,8 +345,8 @@
       <div class="about">
         <div class="about-photo"><img src="assets/owners.webp" width="900" height="1200" alt="Owners Linda and Jordy Dixon in the lounge" loading="lazy"></div>
         <div>
-          <h2 id="about-h">Run by Linda and Jordy</h2>
-          <p class="lede">A mother and daughter team. What began as a tanning studio is now a full wellness lounge, in the same spot.</p>
+          <h2 id="about-h">About Thrive</h2>
+          <p class="lede">A family-owned studio run by mother and daughter Linda and Jordy Dixon. What started as Tan Temptations is now a tanning and wellness lounge, in the same spot.</p>
           <blockquote class="owner-quote">“A space where people can slow down, recharge, and feel good in their own skin.”<footer>Jordy and Linda Dixon</footer></blockquote>
         </div>
       </div>
@@ -418,23 +400,19 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var money = function (n) { return '$' + (Math.round(n * 100) / 100).toFixed(n % 1 ? 2 : 0); };
 
-  /* ---------- One service state shared by the hero chips, the stage and the tabs ---------- */
+  /* ---------- Service tabs (hero tiles open them too) ---------- */
   var tabs = $$('.tab');
   function selectService(id, opts) {
     opts = opts || {};
-    $$('.chip').forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.svc === id); });
-    $$('.stage img').forEach(function (i) { i.classList.toggle('on', i.dataset.svc === id); });
-    if (!opts.stageOnly) tabs.forEach(function (t) { var on = t.dataset.svc === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; if (on && opts.focus) t.focus(); });
-    if (!opts.stageOnly) $$('.svc').forEach(function (p) { p.hidden = p.id !== 'p-' + id; });
-    document.dispatchEvent(new CustomEvent('thrive:service', { detail: { id: id, user: !!opts.user } }));
+    tabs.forEach(function (t) { var on = t.dataset.svc === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; if (on && opts.focus) t.focus(); });
+    $$('.svc').forEach(function (p) { p.hidden = p.id !== 'p-' + id; });
   }
-  $$('.chip').forEach(function (c) { c.addEventListener('click', function () { selectService(c.dataset.svc, { user: true }); }); });
-  tabs.forEach(function (t) { t.addEventListener('click', function () { selectService(t.dataset.svc, { user: true }); }); });
+  $$('[data-go]').forEach(function (b) { b.addEventListener('click', function () { selectService(b.dataset.go); $('#services').scrollIntoView(); }); });
+  tabs.forEach(function (t) { t.addEventListener('click', function () { selectService(t.dataset.svc); }); });
   $('.tabs').addEventListener('keydown', function (e) {
     var i = tabs.indexOf(document.activeElement), k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
-    if (i > -1 && k) { e.preventDefault(); selectService(tabs[(i + k + tabs.length) % tabs.length].dataset.svc, { focus: true, user: true }); }
+    if (i > -1 && k) { e.preventDefault(); selectService(tabs[(i + k + tabs.length) % tabs.length].dataset.svc, { focus: true }); }
   });
-  window.thriveSelect = selectService;
 
   /* Bed picker swaps the UV photo */
   $$('.bed').forEach(function (b) {
@@ -478,7 +456,7 @@
       html += '<h4>' + (plan === 'sauna' ? 'Infrared sauna, 30 min' : 'Red light, 20 min') + '</h4>';
       P.opts.forEach(function (o) {
         var sub = o.sub || (o.flat != null ? 'Unlimited for a month' : (o.per !== o.price ? money(o.per) + ' a visit' : 'Pay as you go'));
-        html += '<div class="price-row' + (o === best ? ' win' : '') + '"><b>' + o.name + (o === best ? '<span class="tag">Best for you</span>' : '') + '</b><span class="amt">' + money(o.price) + '</span><small>' + sub + ' · about ' + money(cost(o, n)) + ' at your pace</small></div>';
+        html += '<div class="price-row' + (o === best ? ' win' : '') + '"><b>' + o.name + (o === best ? '<span class="tag">Best value</span>' : '') + '</b><span class="amt">' + money(o.price) + '</span><small>' + sub + ', about ' + money(cost(o, n)) + ' a month</small></div>';
       });
       (P.extras || []).forEach(function (x, i) { if (!i) html += '<h4>Add-ons</h4>'; html += '<div class="price-row"><b>' + x[0] + '</b><span class="amt">' + x[1] + '</span></div>'; });
     } else {
@@ -516,157 +494,6 @@
     else if (day !== 0 && mins < open) label.textContent = 'Opens today at 11 am';
     else label.textContent = 'Closed now. Opens ' + (day === 6 || day === 0 ? 'Monday' : 'tomorrow') + ' at 11 am';
   })();
-</script>
-<script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" },
-  "integrity": { "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js": "sha384-GY5FqjttLCFRt/McQbyaVdCk2O1IQtOeX8Py6NfD89BIAsIyJFRl4UgSXrk2vXAk" } }
-</script>
-<script type="module">
-  // Hero: a light sweep carries one service photo into the next (GLSL), with glowing motes tinted to the service (GPU points).
-  import * as THREE from 'three';
-
-  const stage = document.querySelector('.stage');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const freeze = new URLSearchParams(location.search).get('t');
-  const T = freeze === null ? null : Math.min(Math.max(parseFloat(freeze) || 0, 0), 30);   // clamp: ?t steps a loop
-  const DPR = Math.min(devicePixelRatio, 2);
-  const ORDER = ['uv', 'red', 'sauna', 'spray'];
-  const TINT = { uv: [0.25, 0.73, 0.83], red: [0.92, 0.2, 0.16], sauna: [0.98, 0.6, 0.27], spray: [0.85, 0.6, 0.38] };
-  function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-
-  const loader = new THREE.TextureLoader();
-  const imgs = Object.fromEntries([...stage.querySelectorAll('img')].map((i) => [i.dataset.svc, i.getAttribute('src')]));
-  const tex = Object.fromEntries(await Promise.all(ORDER.map(async (k) => {
-    const t = await loader.loadAsync(imgs[k]);
-    t.userData.asp = t.image.width / t.image.height;
-    return [k, t];
-  })));
-
-  const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'low-power' });
-  renderer.setPixelRatio(DPR);
-  renderer.domElement.setAttribute('aria-hidden', 'true');
-  stage.appendChild(renderer.domElement);
-  const scene = new THREE.Scene(), camera = new THREE.Camera();
-
-  const U = {
-    u_a: { value: tex.uv }, u_b: { value: tex.uv }, u_aspA: { value: tex.uv.userData.asp }, u_aspB: { value: tex.uv.userData.asp },
-    u_res: { value: new THREE.Vector2(1, 1) }, u_prog: { value: 1 }, u_time: { value: 0 },
-    u_tint: { value: new THREE.Color(...TINT.uv) }, u_mouse: { value: new THREE.Vector2() }, u_dpr: { value: DPR },
-  };
-  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
-    uniforms: U, depthTest: false,
-    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`,
-    fragmentShader: `precision highp float;
-      varying vec2 vUv;
-      uniform sampler2D u_a, u_b;
-      uniform float u_aspA, u_aspB, u_prog, u_time;
-      uniform vec2 u_res, u_mouse;
-      uniform vec3 u_tint;
-      float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-      float noise(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
-        return mix(mix(hash(i), hash(i + vec2(1,0)), u.x), mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), u.x), u.y); }
-      vec2 cover(vec2 uv, float ia){                         // object-fit: cover, with a little room for drift
-        float ca = u_res.x / u_res.y;
-        vec2 s = ca > ia ? vec2(1.0, ia / ca) : vec2(ca / ia, 1.0);
-        return (uv - 0.5) * s / 1.04 + 0.5 + u_mouse * 0.012;
-      }
-      void main(){
-        vec3 a = texture2D(u_a, cover(vUv, u_aspA)).rgb;
-        vec3 b = texture2D(u_b, cover(vUv, u_aspB)).rgb;
-        // a diagonal band of light sweeps across; the new photo sits behind it
-        float d = vUv.x * 0.55 + (1.0 - vUv.y) * 0.45;
-        float e = u_prog * 1.5 - 0.25 + (noise(vec2(vUv.y * 6.0, u_time * 0.6)) - 0.5) * 0.06;
-        float m = smoothstep(e - 0.02, e + 0.02, d);
-        vec3 col = mix(b, a, m);
-        float live = step(0.001, u_prog) * step(u_prog, 0.999);
-        col += u_tint * exp(-pow((d - e) / 0.07, 2.0)) * 0.9 * live;
-        // the room breathes in its own light at the edges
-        float edge = smoothstep(0.35, 0.95, length((vUv - 0.5) * vec2(1.0, 1.2)));
-        col = mix(col, col * 0.55 + u_tint * 0.25, edge * (0.55 + 0.1 * sin(u_time * 0.8)));
-        gl_FragColor = vec4(col, 1.0);
-      }`,
-  })));
-
-  // Motes: soft points drifting up through the light, pushed aside by the pointer
-  const N = 70, rnd = mulberry32(478);
-  const pos = new Float32Array(N * 3), size = new Float32Array(N), seed = new Float32Array(N), vx = new Float32Array(N), vy = new Float32Array(N);
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3).setUsage(THREE.DynamicDrawUsage));
-  geo.setAttribute('aSize', new THREE.BufferAttribute(size, 1));
-  geo.setAttribute('aSeed', new THREE.BufferAttribute(seed, 1));
-  const motes = new THREE.Points(geo, new THREE.ShaderMaterial({
-    uniforms: U, transparent: true, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending,
-    vertexShader: `attribute float aSize, aSeed; uniform vec2 u_res; uniform float u_dpr, u_time; varying float vA;
-      void main(){ vA = 0.45 + 0.35 * sin(u_time * 1.3 + aSeed * 6.28);
-        gl_Position = vec4(position.xy / u_res * 2.0 - 1.0, 0.0, 1.0); gl_PointSize = aSize * u_dpr; }`,
-    fragmentShader: `precision mediump float; uniform vec3 u_tint; varying float vA;
-      void main(){ float d = length(gl_PointCoord - 0.5); float a = smoothstep(0.5, 0.0, d); a *= a;
-        gl_FragColor = vec4(mix(vec3(1.0), u_tint, 0.55) * a * vA, a * vA); }`,
-  }));
-  motes.frustumCulled = false;
-  scene.add(motes);
-
-  let W = 1, H = 1;
-  function resize() {
-    const ow = W, oh = H;
-    W = stage.clientWidth; H = stage.clientHeight;
-    renderer.setSize(W, H, false); U.u_res.value.set(W, H);
-    for (let i = 0; i < N; i++) { pos[i * 3] *= W / ow; pos[i * 3 + 1] *= H / oh; }
-  }
-  for (let i = 0; i < N; i++) { pos[i * 3] = rnd(); pos[i * 3 + 1] = rnd(); size[i] = 6 + rnd() * 16; seed[i] = rnd(); }
-  resize();
-  new ResizeObserver(() => { resize(); if (reduce || T !== null) renderer.render(scene, camera); }).observe(stage);
-
-  const pointer = { x: -999, y: -999 }, mGoal = new THREE.Vector2();
-  stage.addEventListener('pointermove', (e) => {
-    const r = stage.getBoundingClientRect();
-    pointer.x = e.clientX - r.left; pointer.y = r.height - (e.clientY - r.top);
-    mGoal.set(pointer.x / W - .5, pointer.y / H - .5);
-  });
-  stage.addEventListener('pointerleave', () => { pointer.x = pointer.y = -999; mGoal.set(0, 0); });
-
-  // Transitions
-  let current = 'uv', from = 'uv', prog = 1, tintFrom = new THREE.Color(...TINT.uv), tintTo = tintFrom.clone();
-  function go(id) {
-    if (id === current) return;
-    U.u_a.value = tex[current]; U.u_aspA.value = tex[current].userData.asp;
-    U.u_b.value = tex[id]; U.u_aspB.value = tex[id].userData.asp;
-    tintFrom = U.u_tint.value.clone(); tintTo = new THREE.Color(...TINT[id]);
-    from = current; current = id; prog = reduce ? 1 : 0;
-    if (reduce) { U.u_prog.value = 1; U.u_tint.value.copy(tintTo); renderer.render(scene, camera); }
-  }
-  let userPicked = false, sinceSwap = 0;
-  document.addEventListener('thrive:service', (e) => { if (e.detail.user) userPicked = true; go(e.detail.id); sinceSwap = 0; });
-
-  function step(t, dt) {
-    U.u_time.value = t;
-    if (prog < 1) { prog = Math.min(1, prog + dt / 1.1); const k = prog * prog * (3 - 2 * prog); U.u_prog.value = k; U.u_tint.value.copy(tintFrom).lerp(tintTo, k); }
-    U.u_mouse.value.lerp(mGoal, 1 - Math.exp(-4 * dt));
-    for (let i = 0; i < N; i++) {
-      let x = pos[i * 3], y = pos[i * 3 + 1];
-      const ax = Math.sin(y * .01 + t * .4 + seed[i] * 9) * 10, ay = 14 + seed[i] * 16;
-      vx[i] += (ax - vx[i]) * dt * 2; vy[i] += (ay - vy[i]) * dt * 2;
-      const dx = x - pointer.x, dy = y - pointer.y, d2 = dx * dx + dy * dy;
-      if (d2 < 12000) { const f = 3000 / (d2 + 300); vx[i] += dx * f * dt; vy[i] += dy * f * dt; }
-      pos[i * 3] = (x + vx[i] * dt + W + 30) % (W + 30) - 15;
-      pos[i * 3 + 1] = (y + vy[i] * dt + H + 30) % (H + 30) - 15;
-    }
-    geo.attributes.position.needsUpdate = true;
-    // Gently tour the services until someone picks one
-    sinceSwap += dt;
-    if (!userPicked && sinceSwap > 5.5) window.thriveSelect(ORDER[(ORDER.indexOf(current) + 1) % ORDER.length], { stageOnly: true });
-  }
-
-  stage.classList.add('gl');
-  if (T !== null || reduce) {
-    if (T !== null) for (let t = 0; t < T; t += 1 / 30) step(t, 1 / 30);
-    renderer.render(scene, camera);
-    window.__heroReady = true;
-  } else {
-    const clock = new THREE.Clock(); let t = 0;
-    const loop = () => { const dt = Math.min(clock.getDelta(), 1 / 30); t += dt; step(t, dt); renderer.render(scene, camera); };
-    new IntersectionObserver(([e]) => { if (e.isIntersecting) { clock.getDelta(); renderer.setAnimationLoop(loop); } else renderer.setAnimationLoop(null); }).observe(stage);
-  }
 </script>
 </body>
 </html>
