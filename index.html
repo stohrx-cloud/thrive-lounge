@@ -455,8 +455,8 @@
       $('[data-best-why]').textContent = 'About ' + money(cost(best, n)) + ' a month' + (best.flat == null ? ', ' + money(best.per) + ' a visit' : ', unlimited visits');
       html += '<h4>' + (plan === 'sauna' ? 'Infrared sauna, 30 min' : 'Red light, 20 min') + '</h4>';
       P.opts.forEach(function (o) {
-        var sub = o.sub || (o.flat != null ? 'Unlimited for a month' : (o.per !== o.price ? money(o.per) + ' a visit' : 'Pay as you go'));
-        html += '<div class="price-row' + (o === best ? ' win' : '') + '"><b>' + o.name + (o === best ? '<span class="tag">Best value</span>' : '') + '</b><span class="amt">' + money(o.price) + '</span><small>' + sub + ', about ' + money(cost(o, n)) + ' a month</small></div>';
+        var sub = o.sub || (o.flat != null ? 'Unlimited visits for a month' : (o.per !== o.price ? money(o.per) + ' a visit' : 'Pay as you go'));
+        html += '<div class="price-row' + (o === best ? ' win' : '') + '"><b>' + o.name + (o === best ? '<span class="tag">Best value</span>' : '') + '</b><span class="amt">' + money(o.price) + '</span><small>' + sub + (o.flat != null ? '' : ', about ' + money(cost(o, n)) + ' a month') + '</small></div>';
       });
       (P.extras || []).forEach(function (x, i) { if (!i) html += '<h4>Add-ons</h4>'; html += '<div class="price-row"><b>' + x[0] + '</b><span class="amt">' + x[1] + '</span></div>'; });
     } else {
