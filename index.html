@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thrive Lounge Oakville | Tanning, Red Light and Infrared Sauna</title>
+<meta name="description" content="UV tanning, spray tans, red light therapy and infrared sauna at Dundas and Neyagawa, Oakville. Formerly Tan Temptations.">
+<meta name="theme-color" content="#0f1d2b">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  :root {
+    --bg: #f5f8f9;
+    --card: #ffffff;
+    --line: #dfe6e9;
+    --ink: #0f1d2b;
+    --muted: #536472;
+    --aqua: #40bad4;
+    --aqua-deep: #1f8aa3;
+    --aqua-ink: #0b2530;
+    --tint: #e6f6fa;
+    --green: #1d7a4a;
+    --display: "Cormorant Garamond", Georgia, serif;
+    --body: "Hanken Grotesk", system-ui, sans-serif;
+    --head: 70px;
+    --pad: clamp(16px, 4vw, 48px);
+    --max: 1280px;
+    /* shape rule: buttons and chips are pills, cards 16px, inputs 10px, stage 24px */
+    --r-card: 16px;
+    --r-input: 10px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--head) + 12px); }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.02; letter-spacing: -.01em; margin: 0; }
+  h2 { font-size: clamp(38px, 4.2vw, 58px); }
+  button, input { font: inherit; color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  :focus-visible { outline: 3px solid var(--aqua-deep); outline-offset: 2px; }
+  .sec { padding: clamp(56px, 7vw, 96px) 0; }
+  .sec-head { margin-bottom: 28px; }
+  .sec-head p { margin: 8px 0 0; color: var(--muted); font-size: 18px; max-width: 52ch; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 22px; border-radius: 999px; border: 1.5px solid transparent; font-weight: 600; font-size: 16px; text-decoration: none; white-space: nowrap; cursor: pointer; background: none; transition: background-color .15s, border-color .15s, transform .12s; }
+  .btn:active { transform: scale(.97); }
+  .btn i { font-size: 19px; }
+  .btn-main { background: var(--aqua); color: var(--aqua-ink); }
+  .btn-main:hover { background: #5cc8df; }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-dark:hover { background: #1c3247; }
+  .btn-line { border-color: #c3ced3; background: var(--card); }
+  .btn-line:hover { border-color: var(--ink); }
+  .btn-sm { height: 40px; padding: 0 16px; font-size: 15px; }
+
+  /* Header */
+  .site-head { position: sticky; top: 0; z-index: 30; height: var(--head); background: #fff; border-bottom: 1px solid var(--line); }
+  .head-in { height: 100%; display: flex; align-items: center; gap: 24px; }
+  .brand img { height: 52px; width: auto; }
+  .nav { display: flex; gap: 26px; margin-left: auto; }
+  .nav a { text-decoration: none; font-weight: 500; }
+  .nav a:hover { color: var(--aqua-deep); }
+  .head-tel { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; text-decoration: none; }
+  .head-tel i { color: var(--aqua-deep); font-size: 20px; }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(28px, 5vw, 72px); align-items: center; padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(36px, 5vw, 72px); }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; margin: 0 0 16px; color: var(--muted); }
+  .status i { font-size: 18px; }
+  .status.open { color: var(--green); }
+  .hero h1 { font-size: clamp(56px, 7.4vw, 108px); }
+  .hero h1 em { color: var(--aqua-deep); }
+  .hero .lede { margin: 18px 0 0; font-size: clamp(18px, 1.5vw, 21px); color: var(--muted); max-width: 34ch; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .stage-wrap { display: grid; gap: 12px; }
+  .stage { position: relative; margin: 0; aspect-ratio: 4 / 4.6; border-radius: 24px; overflow: hidden; background: #0b1520; }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s; }
+  .stage img.on { opacity: 1; }
+  .stage.gl img { opacity: 0 !important; }
+  .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .svc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 13px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); font-weight: 600; font-size: 14px; white-space: nowrap; cursor: pointer; }
+  .chip i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  .chip:hover { border-color: var(--ink); }
+  .chip[aria-pressed=true] { border-color: var(--ink); background: var(--ink); color: #fff; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-copy > * { animation: rise .8s cubic-bezier(.16,1,.3,1) both; }
+    .hero-copy > :nth-child(2) { animation-delay: .06s; }
+    .hero-copy > :nth-child(3) { animation-delay: .12s; }
+    .hero-copy > :nth-child(4) { animation-delay: .18s; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+  /* Services: one tabbed panel */
+  .services { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; padding: 0; list-style: none; }
+  .tab { white-space: nowrap; height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); font-weight: 600; cursor: pointer; }
+  .tab:hover { border-color: var(--ink); }
+  .tab[aria-selected=true] { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .svc { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+  .svc-photo { border-radius: var(--r-card); overflow: hidden; aspect-ratio: 4 / 5; background: var(--tint); }
+  .svc-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .svc h3 { font-size: clamp(32px, 3.2vw, 44px); }
+  .svc .lede { margin: 10px 0 0; font-size: 18px; color: var(--muted); max-width: 46ch; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 18px 0 0; padding: 0; }
+  .facts li { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--tint); font-weight: 600; font-size: 15px; }
+  .facts i { color: var(--aqua-deep); font-size: 18px; }
+  .ticks { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; }
+  .ticks li { display: flex; gap: 10px; }
+  .ticks i { color: var(--aqua-deep); font-size: 20px; flex: none; margin-top: 2px; }
+  .beds { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 22px; }
+  .bed { padding: 0; border: 1.5px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; cursor: pointer; text-align: left; }
+  .bed img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+  .bed span { display: block; padding: 6px 8px; font-size: 13px; font-weight: 600; }
+  .bed[aria-pressed=true] { border-color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .how { margin-top: 24px; padding: 18px 20px; border-radius: var(--r-card); background: var(--bg); border: 1px solid var(--line); }
+  .how b { display: block; margin-bottom: 10px; }
+  .how .cta-row { margin-top: 0; }
+  .fine { margin: 12px 0 0; font-size: 14px; color: var(--muted); }
+
+  /* Plan finder */
+  .plan { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 24px; align-items: start; }
+  .ask { background: var(--ink); color: #fff; border-radius: var(--r-card); padding: 24px; }
+  .ask h3 { font-size: 30px; }
+  .ask .seg { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .ask .seg button { height: 40px; padding: 0 14px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.3); background: none; color: #fff; font-weight: 600; cursor: pointer; }
+  .ask .seg button[aria-pressed=true] { background: var(--aqua); border-color: var(--aqua); color: var(--aqua-ink); }
+  .ask label { display: block; margin-top: 22px; font-weight: 600; }
+  .visits { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
+  .visits input[type=range] { flex: 1; accent-color: var(--aqua); height: 28px; }
+  .visits output { min-width: 3.4ch; font: 700 34px/1 var(--display); text-align: right; }
+  .best { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); }
+  .best small { display: block; color: #b9c7d2; }
+  .best strong { display: block; font: 700 36px/1.05 var(--display); margin: 4px 0; }
+  .best p { margin: 0; color: #d5dee5; }
+  .ask .note { margin: 16px 0 0; font-size: 14px; color: #b9c7d2; }
+  .prices { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-card); padding: 8px 20px; }
+  .prices h4 { margin: 14px 0 4px; font: 700 13px/1 var(--body); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  .price-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .price-row:last-child { border-bottom: 0; }
+  .price-row b { font-weight: 600; }
+  .price-row .amt { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .price-row small { grid-column: 1 / -1; color: var(--muted); font-size: 14px; }
+  .price-row.win { background: var(--tint); margin: 0 -20px; padding: 12px 20px; border-bottom-color: transparent; }
+  .tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 700; vertical-align: 2px; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .about-photo { border-radius: var(--r-card); overflow: hidden; aspect-ratio: 3 / 4; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+  .about .lede { margin: 12px 0 0; font-size: 18px; color: var(--muted); max-width: 48ch; }
+  .owner-quote { margin: 22px 0 0; padding-left: 18px; border-left: 3px solid var(--aqua); font: 600 italic clamp(22px, 2vw, 27px)/1.3 var(--display); }
+  .owner-quote footer { margin-top: 6px; font: 500 15px var(--body); color: var(--muted); }
+  .rating { display: flex; align-items: baseline; gap: 12px; margin-top: 32px; }
+  .rating strong { font: 700 48px/1 var(--display); }
+  .rating span { color: var(--muted); }
+  .quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+  .quote { margin: 0; padding: 16px 18px; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--line); }
+  .quote p { margin: 0; line-height: 1.45; }
+  .quote footer { margin-top: 6px; color: var(--muted); font-size: 14px; }
+
+  /* Visit */
+  .visit { background: var(--card); border-top: 1px solid var(--line); }
+  .visit-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); }
+  .addr { margin: 14px 0 0; font-style: normal; font-size: 18px; }
+  .contact { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; }
+  .contact a { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  .contact i { font-size: 20px; color: var(--aqua-deep); }
+  .hours { width: 100%; margin-top: 18px; border-collapse: collapse; }
+  .hours td { padding: 7px 0; border-bottom: 1px solid var(--line); }
+  .hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .hours tr.today td { font-weight: 700; color: var(--aqua-deep); }
+  .map { min-height: 380px; border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--line); }
+  .map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; }
+
+  .site-foot { background: var(--ink); color: #c9d4dc; padding: 32px 0; font-size: 15px; }
+  .foot-in { display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; justify-content: space-between; }
+  .foot-in a { color: #fff; }
+  .foot-in nav { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  @media (max-width: 960px) {
+    .nav { display: none; }
+    .head-tel { margin-left: auto; }
+    .hero, .svc, .plan, .about, .visit-grid { grid-template-columns: 1fr; }
+    .stage-wrap { order: -1; }
+    .stage { aspect-ratio: 4 / 3.4; }
+    .svc-photo { aspect-ratio: 16 / 11; }
+    .quotes { grid-template-columns: 1fr; }
+    .about-photo { aspect-ratio: 4 / 3.2; }
+  }
+  @media (max-width: 600px) {
+    :root { --head: 62px; }
+    .brand img { height: 42px; }
+    .head-tel span { display: none; }
+    .head-in { gap: 14px; }
+    .tabs, .svc-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); padding-left: var(--pad); padding-right: var(--pad); }
+    .tabs::-webkit-scrollbar, .svc-chips::-webkit-scrollbar { display: none; }
+    .tab, .chip { flex: none; }
+    .beds { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cta-row .btn { flex: 1 1 auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#top" aria-label="Thrive Lounge, home"><img src="assets/logo.webp" width="542" height="163" alt="Thrive Lounge. Recharge, restore, renew."></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="head-tel" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i><span>905-257-7575</span><span class="sr"> Call</span></a>
+    <a class="btn btn-main btn-sm" href="#services">Book</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <div class="hero-copy">
+      <p class="status" data-status><i class="ph ph-clock" aria-hidden="true"></i><span>Open Monday to Saturday</span></p>
+      <h1>Heat. Light. <em>Glow.</em></h1>
+      <p class="lede">Tanning, red light and infrared sauna at Dundas and Neyagawa. Formerly Tan Temptations.</p>
+      <div class="cta-row">
+        <a class="btn btn-dark" href="#services">See services</a>
+        <a class="btn btn-line" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>905-257-7575</a>
+      </div>
+    </div>
+    <div class="stage-wrap">
+      <figure class="stage" aria-label="Thrive Lounge services" style="margin:0">
+        <img class="on" data-svc="uv" src="assets/bed-medium.webp" width="900" height="1125" alt="A client in a UV tanning bed" fetchpriority="high">
+        <img data-svc="red" src="assets/red-light.webp" width="680" height="850" alt="A red light therapy session" loading="lazy">
+        <img data-svc="sauna" src="assets/sauna.webp" width="900" height="1125" alt="A client relaxing in the infrared sauna" loading="lazy">
+        <img data-svc="spray" src="assets/spray-tan.webp" width="798" height="1200" alt="An airbrush spray tan being applied" loading="lazy">
+      </figure>
+      <ul class="svc-chips" aria-label="Preview a service">
+        <li><button class="chip" type="button" data-svc="uv" aria-pressed="true" style="--c:#40bad4"><i aria-hidden="true"></i>UV tanning</button></li>
+        <li><button class="chip" type="button" data-svc="red" aria-pressed="false" style="--c:#e2362b"><i aria-hidden="true"></i>Red light</button></li>
+        <li><button class="chip" type="button" data-svc="sauna" aria-pressed="false" style="--c:#f09a46"><i aria-hidden="true"></i>Infrared sauna</button></li>
+        <li><button class="chip" type="button" data-svc="spray" aria-pressed="false" style="--c:#c98d55"><i aria-hidden="true"></i>Spray tan</button></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec services" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="svc-h">Services</h2><p>Pick one to see how it works and how to book.</p></div>
+      <ul class="tabs" role="tablist" aria-label="Services">
+        <li role="presentation"><button class="tab" role="tab" id="t-uv" data-svc="uv" aria-controls="p-uv" aria-selected="true">UV tanning</button></li>
+        <li role="presentation"><button class="tab" role="tab" id="t-red" data-svc="red" aria-controls="p-red" aria-selected="false" tabindex="-1">Red light</button></li>
+        <li role="presentation"><button class="tab" role="tab" id="t-sauna" data-svc="sauna" aria-controls="p-sauna" aria-selected="false" tabindex="-1">Infrared sauna</button></li>
+        <li role="presentation"><button class="tab" role="tab" id="t-spray" data-svc="spray" aria-controls="p-spray" aria-selected="false" tabindex="-1">Spray tan</button></li>
+      </ul>
+
+      <div class="svc" id="p-uv" role="tabpanel" aria-labelledby="t-uv">
+        <div class="svc-photo"><img data-bed-photo src="assets/bed-medium.webp" width="900" height="1125" alt="Medium UV tanning bed" loading="lazy"></div>
+        <div>
+          <h3>UV tanning</h3>
+          <p class="lede">An even, natural glow, timed to your skin type.</p>
+          <ul class="facts"><li><i class="ph ph-sun" aria-hidden="true"></i>5 beds and booths</li><li><i class="ph ph-identification-card" aria-hidden="true"></i>18+ only</li><li><i class="ph ph-tag" aria-hidden="true"></i>From $79</li></ul>
+          <div class="beds" aria-label="Our beds">
+            <button class="bed" type="button" aria-pressed="false" data-src="assets/bed-standup.webp" data-name="Stand-up booth"><img src="assets/bed-standup.webp" width="900" height="1125" alt="" loading="lazy"><span>Stand-up</span></button>
+            <button class="bed" type="button" aria-pressed="true" data-src="assets/bed-medium.webp" data-name="Medium UV tanning bed"><img src="assets/bed-medium.webp" width="900" height="1125" alt="" loading="lazy"><span>Medium</span></button>
+            <button class="bed" type="button" aria-pressed="false" data-src="assets/bed-super.webp" data-name="Super UV tanning bed"><img src="assets/bed-super.webp" width="900" height="1125" alt="" loading="lazy"><span>Super</span></button>
+            <button class="bed" type="button" aria-pressed="false" data-src="assets/bed-shark.webp" data-name="Shark UV tanning bed"><img src="assets/bed-shark.webp" width="900" height="1125" alt="" loading="lazy"><span>Shark</span></button>
+            <button class="bed" type="button" aria-pressed="false" data-src="assets/bed-ergo.webp" data-name="Ergo UV tanning bed"><img src="assets/bed-ergo.webp" width="900" height="1125" alt="" loading="lazy"><span>Ergo</span></button>
+          </div>
+          <div class="how"><b>How to book</b><div class="cta-row"><a class="btn btn-dark" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>Call to book</a><a class="btn btn-line" href="#pricing" data-plan="uv">See packages</a></div></div>
+          <p class="fine">Sessions follow Ontario tanning rules. Not for under 18s or every skin type.</p>
+        </div>
+      </div>
+
+      <div class="svc" id="p-red" role="tabpanel" aria-labelledby="t-red" hidden>
+        <div class="svc-photo"><img src="assets/red-light.webp" width="680" height="850" alt="A red light therapy session" loading="lazy"></div>
+        <div>
+          <h3>Red light therapy</h3>
+          <p class="lede">Targeted light for skin, recovery and circulation.</p>
+          <ul class="facts"><li><i class="ph ph-timer" aria-hidden="true"></i>20 minutes</li><li><i class="ph ph-tag" aria-hidden="true"></i>$30 a session</li></ul>
+          <ul class="ticks">
+            <li><i class="ph ph-check" aria-hidden="true"></i>Smoother skin tone and texture</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Less soreness after workouts</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Non-invasive, nothing to prep</li>
+          </ul>
+          <div class="how"><b>How to book</b><div class="cta-row"><a class="btn btn-dark" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>Call to book</a><a class="btn btn-line" href="#pricing" data-plan="red">Compare plans</a></div></div>
+        </div>
+      </div>
+
+      <div class="svc" id="p-sauna" role="tabpanel" aria-labelledby="t-sauna" hidden>
+        <div class="svc-photo"><img src="assets/sauna.webp" width="900" height="1125" alt="A client relaxing in the infrared sauna" loading="lazy"></div>
+        <div>
+          <h3>Infrared sauna</h3>
+          <p class="lede">A 2-person Jacuzzi infrared sauna with colour light. Towels and water included.</p>
+          <ul class="facts"><li><i class="ph ph-timer" aria-hidden="true"></i>30 minutes</li><li><i class="ph ph-users" aria-hidden="true"></i>Bring a friend +$10</li><li><i class="ph ph-sparkle" aria-hidden="true"></i>Halo salt +$6</li></ul>
+          <ul class="ticks">
+            <li><i class="ph ph-check" aria-hidden="true"></i>Relax and lower stress</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Better circulation, gentle detox</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Muscle and joint relief</li>
+          </ul>
+          <div class="how"><b>How to book</b><div class="cta-row"><a class="btn btn-dark" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>Call to book</a><a class="btn btn-line" href="#pricing" data-plan="sauna">Compare plans</a></div></div>
+        </div>
+      </div>
+
+      <div class="svc" id="p-spray" role="tabpanel" aria-labelledby="t-spray" hidden>
+        <div class="svc-photo"><img src="assets/spray-tan.webp" width="798" height="1200" alt="An airbrush spray tan being applied" loading="lazy"></div>
+        <div>
+          <h3>Custom spray tan</h3>
+          <p class="lede">Airbrushed by a trained pro, matched to your skin tone. Streak-free.</p>
+          <ul class="facts"><li><i class="ph ph-timer" aria-hidden="true"></i>30 minutes</li><li><i class="ph ph-tag" aria-hidden="true"></i>$60</li></ul>
+          <ul class="ticks">
+            <li><i class="ph ph-check" aria-hidden="true"></i>No UV at all</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Great before events and trips</li>
+            <li><i class="ph ph-check" aria-hidden="true"></i>Prep steps emailed after you book</li>
+          </ul>
+          <div class="how"><b>How to book</b><div class="cta-row"><a class="btn btn-main" href="https://book.squareup.com/appointments/qqfjvea8zdp7jr/location/LDJ78Z5449Y8X/services" target="_blank" rel="noopener"><i class="ph ph-calendar-check" aria-hidden="true"></i>Book online</a><a class="btn btn-line" href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>Call</a></div></div>
+        </div>
+      </div>
+      <p class="fine">Facials and peels by SkyLaVie Spa are also in the lounge. <a href="https://skylaviespa.ca" target="_blank" rel="noopener">Book with SkyLaVie</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="pricing" aria-labelledby="price-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="price-h">Find your plan</h2><p>Tell us how often you'll come. We'll show the best value.</p></div>
+      <div class="plan">
+        <div class="ask">
+          <h3>What are you here for?</h3>
+          <div class="seg" role="group" aria-label="Service">
+            <button type="button" data-plan="sauna" aria-pressed="true">Infrared sauna</button>
+            <button type="button" data-plan="red" aria-pressed="false">Red light</button>
+            <button type="button" data-plan="uv" aria-pressed="false">UV tanning</button>
+          </div>
+          <div data-visits-block>
+            <label for="visits">Visits a month</label>
+            <div class="visits"><input id="visits" type="range" min="1" max="20" value="4"><output for="visits" data-visits>4</output></div>
+          </div>
+          <div class="best" aria-live="polite">
+            <small data-best-label>Best value</small>
+            <strong data-best-name></strong>
+            <p data-best-why></p>
+          </div>
+          <p class="note" data-plan-note></p>
+        </div>
+        <div class="prices" data-prices></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="about" aria-labelledby="about-h" style="padding-top: 0">
+    <div class="wrap">
+      <div class="about">
+        <div class="about-photo"><img src="assets/owners.webp" width="900" height="1200" alt="Owners Linda and Jordy Dixon in the lounge" loading="lazy"></div>
+        <div>
+          <h2 id="about-h">Run by Linda and Jordy</h2>
+          <p class="lede">A mother and daughter team. What began as a tanning studio is now a full wellness lounge, in the same spot.</p>
+          <blockquote class="owner-quote">“A space where people can slow down, recharge, and feel good in their own skin.”<footer>Jordy and Linda Dixon</footer></blockquote>
+        </div>
+      </div>
+      <div class="rating"><strong>4.8</strong><span>on Google, from 152 reviews</span></div>
+      <div class="quotes">
+        <blockquote class="quote"><p>“Exceptionally clean. Atmosphere and services would rate 10/10!”</p><footer>Google review</footer></blockquote>
+        <blockquote class="quote"><p>“Great facility, high quality beds, friendly and knowledgeable staff.”</p><footer>Google review</footer></blockquote>
+        <blockquote class="quote"><p>“The best tanning beds and red light therapy I’ve ever experienced.”</p><footer>Victoria, client</footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap visit-grid">
+      <div>
+        <h2 id="visit-h">Visit</h2>
+        <address class="addr">478 Dundas St W, Oakville<br>In RioCentre, at Neyagawa Blvd</address>
+        <ul class="contact">
+          <li><a href="tel:+19052577575"><i class="ph ph-phone" aria-hidden="true"></i>905-257-7575</a></li>
+          <li><a href="https://www.instagram.com/thrive.lounge" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i>@thrive.lounge</a></li>
+          <li><a href="https://maps.app.goo.gl/ZqTsK4WJJZBzTL1m9" target="_blank" rel="noopener"><i class="ph ph-navigation-arrow" aria-hidden="true"></i>Get directions</a></li>
+        </ul>
+        <table class="hours">
+          <caption class="sr">Opening hours</caption>
+          <tbody>
+            <tr data-day="1"><td>Monday</td><td>11 am to 7 pm</td></tr>
+            <tr data-day="2"><td>Tuesday</td><td>11 am to 7 pm</td></tr>
+            <tr data-day="3"><td>Wednesday</td><td>11 am to 7 pm</td></tr>
+            <tr data-day="4"><td>Thursday</td><td>11 am to 7 pm</td></tr>
+            <tr data-day="5"><td>Friday</td><td>11 am to 7 pm</td></tr>
+            <tr data-day="6"><td>Saturday</td><td>11 am to 3 pm</td></tr>
+            <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="map"><iframe title="Map to Thrive Lounge" src="https://www.google.com/maps?q=Thrive+Lounge,+478+Dundas+St+W,+Oakville,+ON&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-in">
+    <span>Thrive Lounge, formerly Tan Temptations</span>
+    <nav aria-label="Footer"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#visit">Visit</a><a href="https://www.instagram.com/thrive.lounge" target="_blank" rel="noopener">Instagram</a></nav>
+    <span>© 2026 Thrive Lounge</span>
+  </div>
+</footer>
+
+<script>
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var money = function (n) { return '$' + (Math.round(n * 100) / 100).toFixed(n % 1 ? 2 : 0); };
+
+  /* ---------- One service state shared by the hero chips, the stage and the tabs ---------- */
+  var tabs = $$('.tab');
+  function selectService(id, opts) {
+    opts = opts || {};
+    $$('.chip').forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.svc === id); });
+    $$('.stage img').forEach(function (i) { i.classList.toggle('on', i.dataset.svc === id); });
+    if (!opts.stageOnly) tabs.forEach(function (t) { var on = t.dataset.svc === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; if (on && opts.focus) t.focus(); });
+    if (!opts.stageOnly) $$('.svc').forEach(function (p) { p.hidden = p.id !== 'p-' + id; });
+    document.dispatchEvent(new CustomEvent('thrive:service', { detail: { id: id, user: !!opts.user } }));
+  }
+  $$('.chip').forEach(function (c) { c.addEventListener('click', function () { selectService(c.dataset.svc, { user: true }); }); });
+  tabs.forEach(function (t) { t.addEventListener('click', function () { selectService(t.dataset.svc, { user: true }); }); });
+  $('.tabs').addEventListener('keydown', function (e) {
+    var i = tabs.indexOf(document.activeElement), k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (i > -1 && k) { e.preventDefault(); selectService(tabs[(i + k + tabs.length) % tabs.length].dataset.svc, { focus: true, user: true }); }
+  });
+  window.thriveSelect = selectService;
+
+  /* Bed picker swaps the UV photo */
+  $$('.bed').forEach(function (b) {
+    b.addEventListener('click', function () {
+      $$('.bed').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      var img = $('[data-bed-photo]'); img.src = b.dataset.src; img.alt = b.dataset.name;
+    });
+  });
+
+  /* ---------- Plan finder ---------- */
+  var PLANS = {
+    sauna: { note: 'Packs assume leftover sessions carry over. Packages can’t be shared.', opts: [
+      { name: '1 session', price: 30, per: 30 },
+      { name: '3 pack', price: 75, per: 25 },
+      { name: '10 pack', price: 189, per: 18.9 },
+      { name: 'Monthly unlimited', price: 179, flat: 179 } ],
+      extras: [['Add a second person', '$10'], ['Add Halo salt therapy', '$6']] },
+    red: { note: 'Packs assume leftover sessions carry over. Packages can’t be shared.', opts: [
+      { name: '1 session', price: 30, per: 30 },
+      { name: '10 sessions', price: 139, per: 13.9 },
+      { name: 'Monthly unlimited', price: 109, flat: 109 },
+      { name: '3 months unlimited', price: 267, flat: 89, sub: 'Billed $267, about $89 a month' } ] },
+    uv: { note: 'Ask at the desk which beds each tier covers and how many points a session uses.', groups: [
+      ['Monthly', [['Silver', 89.99], ['Gold', 159.99], ['Platinum', 219.99]], 'Lasts 30 days from first use. 24 hours between sessions. Not shareable.'],
+      ['Points', [['100 points', 79], ['200 points', 139], ['300 points', 189], ['500 points', 269]], 'Points last 12 months and can be shared with family.'] ] }
+  };
+  var plan = 'sauna', range = $('#visits');
+  function cost(o, n) { return o.flat != null ? o.flat : o.per * n; }
+  function renderPlan() {
+    var P = PLANS[plan], n = +range.value, box = $('[data-prices]');
+    $$('.seg button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.plan === plan); });
+    $('[data-visits]').textContent = n;
+    $('[data-plan-note]').textContent = P.note;
+    var html = '';
+    if (P.opts) {
+      $('[data-visits-block]').hidden = false;
+      var best = P.opts.reduce(function (a, o) { return cost(o, n) < cost(a, n) ? o : a; });
+      $('[data-best-label]').textContent = 'Best value at ' + n + (n === 1 ? ' visit' : ' visits') + ' a month';
+      $('[data-best-name]').textContent = best.name;
+      $('[data-best-why]').textContent = 'About ' + money(cost(best, n)) + ' a month' + (best.flat == null ? ', ' + money(best.per) + ' a visit' : ', unlimited visits');
+      html += '<h4>' + (plan === 'sauna' ? 'Infrared sauna, 30 min' : 'Red light, 20 min') + '</h4>';
+      P.opts.forEach(function (o) {
+        var sub = o.sub || (o.flat != null ? 'Unlimited for a month' : (o.per !== o.price ? money(o.per) + ' a visit' : 'Pay as you go'));
+        html += '<div class="price-row' + (o === best ? ' win' : '') + '"><b>' + o.name + (o === best ? '<span class="tag">Best for you</span>' : '') + '</b><span class="amt">' + money(o.price) + '</span><small>' + sub + ' · about ' + money(cost(o, n)) + ' at your pace</small></div>';
+      });
+      (P.extras || []).forEach(function (x, i) { if (!i) html += '<h4>Add-ons</h4>'; html += '<div class="price-row"><b>' + x[0] + '</b><span class="amt">' + x[1] + '</span></div>'; });
+    } else {
+      $('[data-visits-block]').hidden = true;
+      $('[data-best-label]').textContent = 'Lowest price per point';
+      $('[data-best-name]').textContent = '500 points, $269';
+      $('[data-best-why]').textContent = 'About 54¢ a point, shareable with family.';
+      P.groups.forEach(function (g) {
+        html += '<h4>' + g[0] + '</h4>';
+        g[1].forEach(function (r) {
+          var per = g[0] === 'Points' ? ' · ' + Math.round(r[1] / parseInt(r[0], 10) * 100) + '¢ a point' : '';
+          html += '<div class="price-row"><b>' + r[0] + '</b><span class="amt">' + money(r[1]) + '</span>' + (per ? '<small>' + per.slice(3) + '</small>' : '') + '</div>';
+        });
+        html += '<p class="fine" style="margin:8px 0 12px">' + g[2] + '</p>';
+      });
+      html += '<h4>Spray tan</h4><div class="price-row"><b>Custom airbrush, 30 min</b><span class="amt">$60</span></div>';
+    }
+    box.innerHTML = html;
+  }
+  $$('.seg button').forEach(function (b) { b.addEventListener('click', function () { plan = b.dataset.plan; renderPlan(); }); });
+  $$('.how [data-plan]').forEach(function (a) { a.addEventListener('click', function () { plan = a.dataset.plan; renderPlan(); }); });
+  range.addEventListener('input', renderPlan);
+  renderPlan();
+
+  /* ---------- Open now, in Oakville time ---------- */
+  (function () {
+    var parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+    var get = function (t) { return (parts.filter(function (p) { return p.type === t; })[0] || {}).value; };
+    var day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+    var mins = (+get('hour') % 24) * 60 + +get('minute');
+    var open = 11 * 60, close = day === 6 ? 15 * 60 : 19 * 60;
+    var row = $('.hours tr[data-day="' + day + '"]'); if (row) row.className = 'today';
+    var s = $('[data-status]'), label = $('span', s);
+    if (day !== 0 && mins >= open && mins < close) { label.textContent = 'Open now until ' + (day === 6 ? '3 pm' : '7 pm'); s.classList.add('open'); }
+    else if (day !== 0 && mins < open) label.textContent = 'Opens today at 11 am';
+    else label.textContent = 'Closed now. Opens ' + (day === 6 || day === 0 ? 'Monday' : 'tomorrow') + ' at 11 am';
+  })();
+</script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" },
+  "integrity": { "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js": "sha384-GY5FqjttLCFRt/McQbyaVdCk2O1IQtOeX8Py6NfD89BIAsIyJFRl4UgSXrk2vXAk" } }
+</script>
+<script type="module">
+  // Hero: a light sweep carries one service photo into the next (GLSL), with glowing motes tinted to the service (GPU points).
+  import * as THREE from 'three';
+
+  const stage = document.querySelector('.stage');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const freeze = new URLSearchParams(location.search).get('t');
+  const T = freeze === null ? null : Math.min(Math.max(parseFloat(freeze) || 0, 0), 30);   // clamp: ?t steps a loop
+  const DPR = Math.min(devicePixelRatio, 2);
+  const ORDER = ['uv', 'red', 'sauna', 'spray'];
+  const TINT = { uv: [0.25, 0.73, 0.83], red: [0.92, 0.2, 0.16], sauna: [0.98, 0.6, 0.27], spray: [0.85, 0.6, 0.38] };
+  function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  const loader = new THREE.TextureLoader();
+  const imgs = Object.fromEntries([...stage.querySelectorAll('img')].map((i) => [i.dataset.svc, i.getAttribute('src')]));
+  const tex = Object.fromEntries(await Promise.all(ORDER.map(async (k) => {
+    const t = await loader.loadAsync(imgs[k]);
+    t.userData.asp = t.image.width / t.image.height;
+    return [k, t];
+  })));
+
+  const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'low-power' });
+  renderer.setPixelRatio(DPR);
+  renderer.domElement.setAttribute('aria-hidden', 'true');
+  stage.appendChild(renderer.domElement);
+  const scene = new THREE.Scene(), camera = new THREE.Camera();
+
+  const U = {
+    u_a: { value: tex.uv }, u_b: { value: tex.uv }, u_aspA: { value: tex.uv.userData.asp }, u_aspB: { value: tex.uv.userData.asp },
+    u_res: { value: new THREE.Vector2(1, 1) }, u_prog: { value: 1 }, u_time: { value: 0 },
+    u_tint: { value: new THREE.Color(...TINT.uv) }, u_mouse: { value: new THREE.Vector2() }, u_dpr: { value: DPR },
+  };
+  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+    uniforms: U, depthTest: false,
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`,
+    fragmentShader: `precision highp float;
+      varying vec2 vUv;
+      uniform sampler2D u_a, u_b;
+      uniform float u_aspA, u_aspB, u_prog, u_time;
+      uniform vec2 u_res, u_mouse;
+      uniform vec3 u_tint;
+      float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+      float noise(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1,0)), u.x), mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), u.x), u.y); }
+      vec2 cover(vec2 uv, float ia){                         // object-fit: cover, with a little room for drift
+        float ca = u_res.x / u_res.y;
+        vec2 s = ca > ia ? vec2(1.0, ia / ca) : vec2(ca / ia, 1.0);
+        return (uv - 0.5) * s / 1.04 + 0.5 + u_mouse * 0.012;
+      }
+      void main(){
+        vec3 a = texture2D(u_a, cover(vUv, u_aspA)).rgb;
+        vec3 b = texture2D(u_b, cover(vUv, u_aspB)).rgb;
+        // a diagonal band of light sweeps across; the new photo sits behind it
+        float d = vUv.x * 0.55 + (1.0 - vUv.y) * 0.45;
+        float e = u_prog * 1.5 - 0.25 + (noise(vec2(vUv.y * 6.0, u_time * 0.6)) - 0.5) * 0.06;
+        float m = smoothstep(e - 0.02, e + 0.02, d);
+        vec3 col = mix(b, a, m);
+        float live = step(0.001, u_prog) * step(u_prog, 0.999);
+        col += u_tint * exp(-pow((d - e) / 0.07, 2.0)) * 0.9 * live;
+        // the room breathes in its own light at the edges
+        float edge = smoothstep(0.35, 0.95, length((vUv - 0.5) * vec2(1.0, 1.2)));
+        col = mix(col, col * 0.55 + u_tint * 0.25, edge * (0.55 + 0.1 * sin(u_time * 0.8)));
+        gl_FragColor = vec4(col, 1.0);
+      }`,
+  })));
+
+  // Motes: soft points drifting up through the light, pushed aside by the pointer
+  const N = 70, rnd = mulberry32(478);
+  const pos = new Float32Array(N * 3), size = new Float32Array(N), seed = new Float32Array(N), vx = new Float32Array(N), vy = new Float32Array(N);
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3).setUsage(THREE.DynamicDrawUsage));
+  geo.setAttribute('aSize', new THREE.BufferAttribute(size, 1));
+  geo.setAttribute('aSeed', new THREE.BufferAttribute(seed, 1));
+  const motes = new THREE.Points(geo, new THREE.ShaderMaterial({
+    uniforms: U, transparent: true, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: `attribute float aSize, aSeed; uniform vec2 u_res; uniform float u_dpr, u_time; varying float vA;
+      void main(){ vA = 0.45 + 0.35 * sin(u_time * 1.3 + aSeed * 6.28);
+        gl_Position = vec4(position.xy / u_res * 2.0 - 1.0, 0.0, 1.0); gl_PointSize = aSize * u_dpr; }`,
+    fragmentShader: `precision mediump float; uniform vec3 u_tint; varying float vA;
+      void main(){ float d = length(gl_PointCoord - 0.5); float a = smoothstep(0.5, 0.0, d); a *= a;
+        gl_FragColor = vec4(mix(vec3(1.0), u_tint, 0.55) * a * vA, a * vA); }`,
+  }));
+  motes.frustumCulled = false;
+  scene.add(motes);
+
+  let W = 1, H = 1;
+  function resize() {
+    const ow = W, oh = H;
+    W = stage.clientWidth; H = stage.clientHeight;
+    renderer.setSize(W, H, false); U.u_res.value.set(W, H);
+    for (let i = 0; i < N; i++) { pos[i * 3] *= W / ow; pos[i * 3 + 1] *= H / oh; }
+  }
+  for (let i = 0; i < N; i++) { pos[i * 3] = rnd(); pos[i * 3 + 1] = rnd(); size[i] = 6 + rnd() * 16; seed[i] = rnd(); }
+  resize();
+  new ResizeObserver(() => { resize(); if (reduce || T !== null) renderer.render(scene, camera); }).observe(stage);
+
+  const pointer = { x: -999, y: -999 }, mGoal = new THREE.Vector2();
+  stage.addEventListener('pointermove', (e) => {
+    const r = stage.getBoundingClientRect();
+    pointer.x = e.clientX - r.left; pointer.y = r.height - (e.clientY - r.top);
+    mGoal.set(pointer.x / W - .5, pointer.y / H - .5);
+  });
+  stage.addEventListener('pointerleave', () => { pointer.x = pointer.y = -999; mGoal.set(0, 0); });
+
+  // Transitions
+  let current = 'uv', from = 'uv', prog = 1, tintFrom = new THREE.Color(...TINT.uv), tintTo = tintFrom.clone();
+  function go(id) {
+    if (id === current) return;
+    U.u_a.value = tex[current]; U.u_aspA.value = tex[current].userData.asp;
+    U.u_b.value = tex[id]; U.u_aspB.value = tex[id].userData.asp;
+    tintFrom = U.u_tint.value.clone(); tintTo = new THREE.Color(...TINT[id]);
+    from = current; current = id; prog = reduce ? 1 : 0;
+    if (reduce) { U.u_prog.value = 1; U.u_tint.value.copy(tintTo); renderer.render(scene, camera); }
+  }
+  let userPicked = false, sinceSwap = 0;
+  document.addEventListener('thrive:service', (e) => { if (e.detail.user) userPicked = true; go(e.detail.id); sinceSwap = 0; });
+
+  function step(t, dt) {
+    U.u_time.value = t;
+    if (prog < 1) { prog = Math.min(1, prog + dt / 1.1); const k = prog * prog * (3 - 2 * prog); U.u_prog.value = k; U.u_tint.value.copy(tintFrom).lerp(tintTo, k); }
+    U.u_mouse.value.lerp(mGoal, 1 - Math.exp(-4 * dt));
+    for (let i = 0; i < N; i++) {
+      let x = pos[i * 3], y = pos[i * 3 + 1];
+      const ax = Math.sin(y * .01 + t * .4 + seed[i] * 9) * 10, ay = 14 + seed[i] * 16;
+      vx[i] += (ax - vx[i]) * dt * 2; vy[i] += (ay - vy[i]) * dt * 2;
+      const dx = x - pointer.x, dy = y - pointer.y, d2 = dx * dx + dy * dy;
+      if (d2 < 12000) { const f = 3000 / (d2 + 300); vx[i] += dx * f * dt; vy[i] += dy * f * dt; }
+      pos[i * 3] = (x + vx[i] * dt + W + 30) % (W + 30) - 15;
+      pos[i * 3 + 1] = (y + vy[i] * dt + H + 30) % (H + 30) - 15;
+    }
+    geo.attributes.position.needsUpdate = true;
+    // Gently tour the services until someone picks one
+    sinceSwap += dt;
+    if (!userPicked && sinceSwap > 5.5) window.thriveSelect(ORDER[(ORDER.indexOf(current) + 1) % ORDER.length], { stageOnly: true });
+  }
+
+  stage.classList.add('gl');
+  if (T !== null || reduce) {
+    if (T !== null) for (let t = 0; t < T; t += 1 / 30) step(t, 1 / 30);
+    renderer.render(scene, camera);
+    window.__heroReady = true;
+  } else {
+    const clock = new THREE.Clock(); let t = 0;
+    const loop = () => { const dt = Math.min(clock.getDelta(), 1 / 30); t += dt; step(t, dt); renderer.render(scene, camera); };
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) { clock.getDelta(); renderer.setAnimationLoop(loop); } else renderer.setAnimationLoop(null); }).observe(stage);
+  }
+</script>
+</body>
+</html>
